@@ -2,7 +2,6 @@ import React from 'react';
 import { 
   StyleSheet,
   Image,
-  TouchableWithoutFeedback,
   Text,
   View
 } from 'react-native';
@@ -39,11 +38,7 @@ export default class StateScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableWithoutFeedback
-          onPress={this.onImagePressed}
-        >
         <Image source={require('../assets/confused-emoji.png')} style={styles.logo} />
-        </TouchableWithoutFeedback>
         <Text style={styles.header}>
           What is George's state?
         </Text>
