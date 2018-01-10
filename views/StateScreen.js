@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Image,
   Text,
-  View
+  View,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import firebase from 'react-native-firebase';
@@ -18,6 +19,10 @@ export default class StateScreen extends React.Component {
 
     this.stateRef = firebase.firestore().collection('states').orderBy('added_at', 'desc').limit(1);
     this.unsubscribe = null;
+  }
+
+  onImagePressed = () => {
+      this.props.navigation.navigate('AddState');
   }
 
   onCollectionUpdate = (querySnapshot) => {
@@ -38,7 +43,14 @@ export default class StateScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={require('../assets/confused-emoji.png')} style={styles.logo} />
+        <TouchableWithoutFeedback
+            onPress={this.onImagePressed}
+        >
+            <Image
+                source={require('../assets/confused-emoji.png')}
+                style={styles.logo}
+            />
+        </TouchableWithoutFeedback>
         <Text style={styles.header}>
           What is George's state?
         </Text>
